@@ -1,18 +1,36 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <section class = "books"
+    v-for="b in books"
+    v-bind:key=b.id>
+      <book v-bind:title = "b.title"
+      v-bind:author = "b.author"
+      v-bind:id = "b.id"/>
+    </section>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import book from '@/components/book.vue'
+import json from './childrensbooks.json'
 
 export default {
   name: 'Home',
+  data: function(){
+    return {
+      books: json.books
+    }
+  },
   components: {
-    HelloWorld
+    book
   }
 }
 </script>
+
+<style scoped>
+  .home {
+    display: grid;
+    grid-template: 10vw / auto auto auto auto;
+  }
+</style>
